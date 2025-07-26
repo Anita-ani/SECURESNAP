@@ -23,11 +23,9 @@ This diagram shows:
 * SonarQube connected to Jenkins
 * GitHub as the source repository
 * Prometheus scraping Jenkins metrics
-* Grafana dashboarding Prometheus data
+* Grafana dashboarding Prometheus 
 
-📸 *Insert architecture diagram screenshot here*
 
----
 
 ##  Step-by-Step Setup
 
@@ -111,9 +109,7 @@ Update `prometheus.yml`:
 2. SonarQube Analysis 
 3. Prometheus Target 
 4. Grafana CI/CD Dashboard 
-   *Ensure screenshots are placed in the ******************************************************`screenshots/`****************************************************** folder and linked in README*
-
----
+   
 
 ##  Common Errors & Fixes
 
