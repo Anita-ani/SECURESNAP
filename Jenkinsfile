@@ -1,5 +1,6 @@
 pipeline {
     agent any
+<<<<<<< HEAD
 
     environment {
         PYTHONUNBUFFERED = 1
@@ -49,4 +50,30 @@ pipeline {
         }
     }
 }
+=======
+>>>>>>> b2b25f3 (Initial commit:  DevSecOps pipeline with Jenkins, Docker, and SonarQube)
 
+    tools {
+        python 'Python3' // Make sure you’ve configured this in Jenkins global tools
+    }
+
+    stages {
+        stage('Create Virtual Environment') {
+            steps {
+                bat 'python -m venv venv'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                bat '.\\venv\\Scripts\\activate && pip install -r requirements.txt'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                bat '.\\venv\\Scripts\\activate && pytest'
+            }
+        }
+    }
+}

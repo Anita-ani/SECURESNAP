@@ -1,13 +1,26 @@
 from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse
-from fastapi.templating import Jinja2Templates
-from app.routes.home import router as home_router
+from prometheus_fastapi_instrumentator import Instrumentator, metrics
 
 app = FastAPI()
-templates = Jinja2Templates(directory="app/templates")
 
-app.include_router(home_router)
+instrumentator = Instrumentator(
+    should_group_status_codes=True,
+    should_ignore_untemplated=True,
+    should_group_untemplated=True,
+)
 
-@app.get("/health", response_class=HTMLResponse)
-async def health_check():
-    return "OK"
+# Optional: Add custom metrics like latency, request sizes, etc.
+instrumentator.add(metrics.latency())
+instrumentator.add(metrics.requests())
+instrumentator.add(metrics.response_size())
+instrumentator.add(metrics.request_size())
+
+instrumentator.instrument(app).expose(app, include_in_schema=False)
+
+@app.get("/")
+async def home():
+    return {"message": "Hello from SECURESNAP"}
+
+@app.get("/health")
+async def health():
+    return {"status": "OK"}

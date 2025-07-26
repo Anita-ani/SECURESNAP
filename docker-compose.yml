@@ -3,9 +3,28 @@ version: '3.9'
 services:
   web:
     build: .
+    container_name: securesnap-web
     ports:
       - "8000:8000"
     volumes:
       - .:/app
     environment:
       - PYTHONUNBUFFERED=1
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    depends_on:
+      - web
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
