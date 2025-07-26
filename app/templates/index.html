@@ -1,10 +1,147 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>SECURESNAP</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SECURESNAP | Next-Gen Security Platform</title>
+    <style>
+        :root {
+            --primary: #2b5876;
+            --secondary: #4e4376;
+            --accent: #00d4ff;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--light);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            padding: 2rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--accent);
+        }
+        h1 {
+            color: var(--accent);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+        }
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            width: 200px;
+            transition: transform 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .feature-card h3 {
+            color: var(--accent);
+            margin-top: 0;
+        }
+        .cta-button {
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+        }
+        .cta-button:hover {
+            background: white;
+            box-shadow: 0 0 20px var(--accent);
+            transform: scale(1.05);
+        }
+        .pipeline-animation {
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(90deg, 
+                #ff0000 0%, #ff8000 20%, 
+                #ffff00 40%, #00ff00 60%, 
+                #00ffff 80%, #0000ff 100%);
+            background-size: 600% 100%;
+            animation: pipeline 8s linear infinite;
+            border-radius: 5px;
+            margin: 2rem 0;
+        }
+        @keyframes pipeline {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+    </style>
 </head>
 <body>
-    <h1>{{ message }}</h1>
-    <p>This is a secure app with full DevSecOps pipeline.</p>
+    <div class="container">
+        <h1>{{ SECURESNAP }}</h1>
+        
+        <div class="pipeline-animation" title="Active DevSecOps Pipeline"></div>
+        
+        <p>Welcome to <strong>SECURESNAP</strong> - where cutting-edge security meets seamless deployment. 
+        Our platform integrates robust protection at every stage of development.</p>
+        
+        <div class="features">
+            <div class="feature-card">
+                <h3> Secure by Design</h3>
+                <p>Built with zero-trust architecture and end-to-end encryption</p>
+            </div>
+            <div class="feature-card">
+                <h3> CI/CD Pipeline</h3>
+                <p>Automated security checks in every build and deployment</p>
+            </div>
+            <div class="feature-card">
+                <h3> Threat Protection</h3>
+                <p>Real-time vulnerability scanning and patching</p>
+            </div>
+        </div>
+        
+        <button class="cta-button">Explore Security Dashboard</button>
+        
+        <p><small>Current version: 2.4.1 | Last scanned: <span id="scan-date">Loading...</span></small></p>
+    </div>
+
+    <script>
+        // Dynamic scan date
+        document.getElementById('scan-date').textContent = new Date().toLocaleString();
+        
+        // Animation for the CTA button
+        const ctaButton = document.querySelector('.cta-button');
+        setInterval(() => {
+            ctaButton.style.boxShadow = `0 0 ${15 + Math.random() * 10}px var(--accent)`;
+        }, 1000);
+    </script>
 </body>
 </html>

@@ -4,4 +4,4 @@ global:
 scrape_configs:
   - job_name: 'securesnap-fastapi'
     static_configs:
-      - targets: ['securesnap-web:8000']
+      - targets: [':8000']

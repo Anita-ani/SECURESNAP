@@ -19,7 +19,7 @@ instrumentator.instrument(app).expose(app, include_in_schema=False)
 
 @app.get("/")
 async def home():
-    return {"message": "Hello from SECURESNAP"}
+    return {"message": "Hello from SECURESNAP a full DevSecOps"}
 
 @app.get("/health")
 async def health():
